@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <h1>My Library</h1>
+    <p>Welcome to your library, Ethan</p>
+
+    <button id="addBookBtn">Add a New Book</button>
+
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add a New Book</h2>
+
+            <input type="text" id="bookTitle" placeholder="Book Title"><br><br>
+            <input type="text" id="author" placeholder="Author"><br><br>
+            <input type="number" id="pageNumber" placeholder="Number of Pages"><br><br>
+            <label>
+                <input type="checkbox" id="readStatus"> Have you read this book?
+            </label><br><br>
+            <input type="text" id="coverImage" placeholder="Image URL for Book Cover"><br><br>
+            <button onclick="addBookToLibrary()">Add Book</button>
+        </div>
+    </div>
+
+    <h3>Your Library, Monsieur:</h3>
+
+
+
+
     <script src="index.js"></script>
 </body>
 </html>
