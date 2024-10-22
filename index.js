@@ -1,7 +1,7 @@
 const myLibrary = [
-    new Book("To Kill a Mockingbird", "Harper Lee", 324, true),
-    new Book("1984", "George Orwell", 328, false),
-    new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true)
+    new Book("To Kill a Mockingbird", "Harper Lee", 324, true, "https://example.com/mock_cover.jpg"),
+    new Book("1984", "George Orwell", 328, false, "https://example.com/1984_cover.jpg"),
+    new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true, "https://example.com/gatsby_cover.jpg")
 ];
 
 function Book(title, author, pages, isRead, coverImage) {
@@ -9,7 +9,7 @@ function Book(title, author, pages, isRead, coverImage) {
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    this.coverImage = cover;
+    this.coverImage = coverImage;
 }
 
 function addBookToLibrary() {
@@ -38,7 +38,7 @@ function displayLibrary() {
     const libraryContainer = document.getElementById('libraryContainer');
     libraryContainer.innerHTML = '';
 
-    myLibrary.forEach((book) {
+    myLibrary.forEach(function(book) {
 
         const card = document.createElement('div');
         card.classList.add('bookCard');
@@ -52,19 +52,24 @@ function displayLibrary() {
         const pageElement = document.createElement('p');
         pageElement.textContent = book.pages;
 
-        // Sort these two out -- I think there needs to be something specific to make the checkbox and image.
-        const readStatusElement = document.createElement('checkbox');
-        readStatusElement.textContent = book.isRead ? 'Yes' : 'No';
+        
+        const readStatusElement = document.createElement('input');
+        readStatusElement.type = 'checkbox';
+        readStatusElement.checked = book.isRead;
 
-        const coverImage = document.createElement('img');
-        coverImage.src = book.coverImage || "https://via.placeholder.com/150"; 
+        const readStatusLabel = document.createElement('label');
+        readStatusLabel.textContent = 'Read: ';
+        readStatusLabel.appendChild(readStatusElement);
+
+        const coverImageElement = document.createElement('img');
+        coverImageElement.src = book.coverImage || "https://via.placeholder.com/150"; 
 
 
         card.appendChild(coverImageElement);
         card.appendChild(titleElement);
         card.appendChild(authorElement);
         card.appendChild(pageElement);
-        card.appendChild(readStatusElement);
+        card.appendChild(readStatusLabel);
 
         libraryContainer.appendChild(card);
     });
@@ -89,4 +94,7 @@ closeModal.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
-    }
+    };
+}
+
+console.log(myLibrary);
