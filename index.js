@@ -1,7 +1,14 @@
 const myLibrary = [
-    new Book("To Kill a Mockingbird", "Harper Lee", 324, true, "https://example.com/mock_cover.jpg"),
-    new Book("1984", "George Orwell", 328, false, "https://example.com/1984_cover.jpg"),
-    new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true, "https://example.com/gatsby_cover.jpg")
+    new Book("To Kill a Mockingbird", "Harper Lee", 324, true, "mockingbird.jpg"),
+    new Book("1984", "George Orwell", 328, false, "1984.jpg"),
+    new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, true, "gatsby.jpg"),
+    new Book("Atlas Shrugged", "Ayn Rand", 1192, true, "atlas.jpg"),
+    new Book("Paradise Lost", "John Milton", 512, true, "paradise.jpg"),
+    new Book("Pride and Prejudice", "Jane Austen", 432, true, "pride.jpg"),
+    new Book("The Catcher in the Rye", "J.D. Salinger", 277, false, "catcher.webp"),
+    new Book("The Hobbit", "J.R.R. Tolkien", 310, true, "hobbit.avif"),
+    new Book("Fahrenheit 451", "Ray Bradbury", 158, false, "451.jpg"),
+    new Book("Brave New World", "Aldous Huxley", 268, true, "brave.jpg")
 ];
 
 function Book(title, author, pages, isRead, coverImage) {
@@ -45,12 +52,14 @@ function displayLibrary() {
 
         const titleElement = document.createElement('h2');
         titleElement.textContent = book.title;
+        titleElement.classList.add('heading');
 
         const authorElement = document.createElement('h2');
-        authorElement.textContent = book.author;
+        authorElement.textContent = `Author: ${book.author}`;
+        authorElement.classList.add('authorHeading')
 
         const pageElement = document.createElement('p');
-        pageElement.textContent = book.pages;
+        pageElement.textContent = `Pages: ${book.pages}`;
 
         
         const readStatusElement = document.createElement('input');
@@ -59,11 +68,12 @@ function displayLibrary() {
 
         const readStatusLabel = document.createElement('label');
         readStatusLabel.textContent = 'Read: ';
+        readStatusLabel.classList.add("status");
         readStatusLabel.appendChild(readStatusElement);
 
         const coverImageElement = document.createElement('img');
         coverImageElement.src = book.coverImage || "https://via.placeholder.com/150"; 
-
+        coverImageElement.classList.add("cover")
 
         card.appendChild(coverImageElement);
         card.appendChild(titleElement);
